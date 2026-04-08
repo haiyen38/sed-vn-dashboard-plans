@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SED APP — Nền tảng giáo dục cho tương lai số</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap');
+    * { font-family: 'Be Vietnam Pro', sans-serif; }
+
+    /* Brand colors */
+    :root {
+      --navy: #1B2F6E;
+      --gold: #C9A227;
+      --blue: #3B82F6;
+      --yellow: #F5C518;
+      --purple: #7C3AED;
+      --orange: #F97316;
+      --green: #059669;
+    }
+
+    /* Gradient hero */
+    .hero-gradient {
+      background: linear-gradient(135deg, #1B2F6E 0%, #2563EB 40%, #7C3AED 100%);
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .float { animation: float 3s ease-in-out infinite; }
+    .float-delay { animation: float 3s ease-in-out 1.5s infinite; }
+
+    /* Fade in on scroll */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Color wheel dots */
+    .color-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+    /* Card hover */
+    .card-hover { transition: all 0.2s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #C9A227, #F97316, #7C3AED);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Step connector */
+    .step-line { position: absolute; top: 24px; left: calc(50% + 40px); width: calc(100% - 80px); height: 2px; background: linear-gradient(90deg, #3B82F6, #7C3AED); }
+
+    /* Sticky nav */
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; backdrop-filter: blur(12px); background: rgba(27,47,110,0.95); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #1B2F6E; border-radius: 3px; }
+
+    /* Weakness bar */
+    .weakness-bar { height: 8px; border-radius: 4px; transition: width 1.5s ease; }
+
+    /* Blob background */
+    .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; }
+  </style>
+</head>
+<body class="bg-white overflow-x-hidden">
+
+  <!-- ======== NAV ======== -->
+  <nav class="border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="https://cdn0145.cdn4s.com/media/logo/logo-ised_1.png" alt="iSED" class="h-8" onerror="this.style.display='none'"/>
+        <div>
+          <div class="text-white font-bold text-lg leading-tight">SED APP</div>
+          <div class="text-blue-300 text-xs">Nền tảng học tập thông minh</div>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm text-blue-200">
+        <a href="#features" class="hover:text-white transition-colors">Tính năng</a>
+        <a href="#how" class="hover:text-white transition-colors">Cách hoạt động</a>
+        <a href="#algorithm" class="hover:text-white transition-colors">Thuật toán</a>
+        <a href="#pricing" class="hover:text-white transition-colors">Gói học</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://sed.vn" class="hidden md:block text-sm text-blue-200 hover:text-white transition-colors">Đăng nhập</a>
+        <a href="https://sed.vn" class="bg-amber-400 hover:bg-amber-300 text-gray-900 font-semibold text-sm px-5 py-2.5 rounded-full transition-all">
+          Dùng thử miễn phí
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero-gradient min-h-screen flex items-center relative overflow-hidden pt-20">
+    <!-- Blobs -->
+    <div class="blob w-96 h-96 bg-purple-500 top-20 -right-20"></div>
+    <div class="blob w-64 h-64 bg-blue-400 bottom-20 -left-10"></div>
+    <div class="blob w-48 h-48 bg-amber-400 top-1/2 right-1/4"></div>
+
+    <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left -->
+        <div>
+          <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 mb-6">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-white/80 text-sm">Hơn 10.000+ học sinh đang học mỗi ngày</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
+            Khơi nguồn<br/>
+            <span class="gradient-text">tri thức</span>,<br/>
+            Vững bước<br/>tương lai
+          </h1>
+
+          <p class="text-blue-200 text-lg leading-relaxed mb-8">
+            Nền tảng học tập cá nhân hoá đầu tiên tại Việt Nam — phát hiện đúng điểm yếu,
+            gợi ý đúng bài tập, giúp con tiến bộ theo lộ trình riêng.
+          </p>
+
+          <!-- SED pills -->
+          <div class="flex flex-wrap gap-3 mb-8">
+            <span class="bg-white/10 border border-white/20 text-white text-sm px-4 py-2 rounded-full">
+              <span class="font-bold text-amber-400">S</span>imple — Đơn giản
+            </span>
+            <span class="bg-white/10 border border-white/20 text-white text-sm px-4 py-2 rounded-full">
+              <span class="font-bold text-orange-400">E</span>ngaging — Lôi cuốn
+            </span>
+            <span class="bg-white/10 border border-white/20 text-white text-sm px-4 py-2 rounded-full">
+              <span class="font-bold text-purple-400">D</span>ynamic — Năng lượng
+            </span>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="https://sed.vn" class="bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold text-base px-8 py-4 rounded-2xl transition-all text-center shadow-lg shadow-amber-500/30">
+              Bắt đầu miễn phí →
+            </a>
+            <a href="#how" class="bg-white/10 hover:bg-white/20 text-white font-semibold text-base px-8 py-4 rounded-2xl transition-all text-center border border-white/20">
+              Tìm hiểu thêm
+            </a>
+          </div>
+        </div>
+
+        <!-- Right — Dashboard preview -->
+        <div class="relative">
+          <!-- Main card -->
+          <div class="float bg-white rounded-3xl p-6 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <div class="text-xs text-gray-400">Học sinh</div>
+                <div class="font-bold text-gray-800">Nguyễn Minh Anh</div>
+              </div>
+              <div class="flex items-center gap-1 bg-orange-50 px-3 py-1.5 rounded-full">
+                <span class="text-lg">🔥</span>
+                <span class="font-bold text-orange-500 text-sm">7 ngày</span>
+              </div>
+            </div>
+            <!-- Progress bars by subject -->
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span class="text-gray-500">Phép chia</span><span class="text-green-600 font-medium">85%</span></div>
+                <div class="bg-gray-100 rounded-full h-2"><div class="h-2 rounded-full bg-green-500 w-[85%]"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span class="text-gray-500">Phân số</span><span class="text-orange-600 font-medium">62%</span></div>
+                <div class="bg-gray-100 rounded-full h-2"><div class="h-2 rounded-full bg-orange-400 w-[62%]"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span class="text-gray-500">Hình học</span><span class="text-red-500 font-medium">38%</span></div>
+                <div class="bg-gray-100 rounded-full h-2"><div class="h-2 rounded-full bg-red-400 w-[38%]"></div></div>
+              </div>
+            </div>
+            <!-- Recommendation -->
+            <div class="mt-4 bg-blue-50 rounded-xl p-3 border border-blue-100">
+              <div class="text-xs font-semibold text-blue-700 mb-1">🎯 Gợi ý hôm nay</div>
+              <div class="text-xs text-blue-600">Luyện 5 câu Hình học — cơ bản trước tiên!</div>
+            </div>
+          </div>
+
+          <!-- Floating badge 1 -->
+          <div class="float-delay absolute -top-4 -right-4 bg-purple-600 text-white rounded-2xl px-4 py-3 shadow-lg text-sm font-semibold">
+            📊 Phân tích AI<br/><span class="text-purple-200 text-xs font-normal">Cá nhân hoá 100%</span>
+          </div>
+
+          <!-- Floating badge 2 -->
+          <div class="float absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 shadow-lg border border-gray-100">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🎉</span>
+              <div>
+                <div class="text-xs font-bold text-gray-800">Tiến bộ vượt bậc!</div>
+                <div class="text-xs text-gray-400">+23% tuần này</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== STATS BAR ======== -->
+  <section class="bg-gray-50 border-b border-gray-100 py-10">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-3xl font-black text-gray-900">10.000+</div>
+          <div class="text-sm text-gray-500 mt-1">Học sinh đang dùng</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-gray-900">500.000+</div>
+          <div class="text-sm text-gray-500 mt-1">Bài tập đã hoàn thành</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-gray-900">98%</div>
+          <div class="text-sm text-gray-500 mt-1">Phụ huynh hài lòng</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black text-gray-900">3 phút</div>
+          <div class="text-sm text-gray-500 mt-1">Bắt đầu không cần cài đặt</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SED MEANINGS ======== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14 fade-in">
+        <div class="inline-block bg-amber-50 border border-amber-200 text-amber-700 text-sm font-medium px-4 py-2 rounded-full mb-4">
+          Ý nghĩa của SED
+        </div>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+          Nhiều ý nghĩa, <span class="gradient-text">một sứ mệnh</span>
+        </h2>
+        <p class="text-gray-500 max-w-xl mx-auto">
+          SED không chỉ là một cái tên — mỗi cách đọc đều phản ánh triết lý giáo dục sâu sắc
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-5 fade-in">
+        <!-- SED 1 -->
+        <div class="card-hover bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 rounded-2xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-amber-400 rounded-xl flex items-center justify-center shrink-0">
+              <span class="text-2xl">✨</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900 mb-1">Shaping Every Dream</div>
+              <div class="text-sm text-amber-700 font-medium mb-2">Định hình và nuôi dưỡng mọi ước mơ</div>
+              <p class="text-sm text-gray-500">Mỗi học sinh có ước mơ riêng — SED giúp con xây dựng nền tảng kiến thức vững chắc để hiện thực hoá giấc mơ đó.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SED 2 -->
+        <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center shrink-0">
+              <span class="text-2xl">🧩</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900 mb-1">Solutions for Every Difference</div>
+              <div class="text-sm text-blue-700 font-medium mb-2">Giải pháp cho mọi sự khác biệt</div>
+              <p class="text-sm text-gray-500">Không có hai học sinh nào giống nhau. SED phân tích từng điểm mạnh, điểm yếu để cá nhân hoá lộ trình học riêng cho con.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SED 3 -->
+        <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100 rounded-2xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center shrink-0">
+              <span class="text-2xl">🌿</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900 mb-1">Solutions for Educational Diversity</div>
+              <div class="text-sm text-green-700 font-medium mb-2">Đa dạng hoá giải pháp giáo dục</div>
+              <p class="text-sm text-gray-500">Học Toán, Ngữ văn hay bất kỳ môn nào — SED cung cấp kho bài tập phong phú, phân loại rõ ràng từ cơ bản đến nâng cao.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SED 4 -->
+        <div class="card-hover bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-100 rounded-2xl p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center shrink-0">
+              <span class="text-2xl">🏆</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900 mb-1">Success by Embracing Differences</div>
+              <div class="text-sm text-purple-700 font-medium mb-2">Thành công bằng cách chấp nhận khác biệt</div>
+              <p class="text-sm text-gray-500">Thay vì so sánh con với người khác, SED đo lường sự tiến bộ của chính con — từng ngày, từng tuần, từng tháng.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== HOW IT WORKS ======== -->
+  <section id="how" class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14 fade-in">
+        <div class="inline-block bg-blue-50 border border-blue-200 text-blue-700 text-sm font-medium px-4 py-2 rounded-full mb-4">
+          Cách hoạt động
+        </div>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+          Chỉ <span class="text-blue-600">3 bước</span> để bắt đầu
+        </h2>
+        <p class="text-gray-500 max-w-lg mx-auto">Không cần cài đặt phức tạp. Phụ huynh đăng ký — con học ngay hôm nay.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 fade-in">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-blue-200">
+            <span class="text-3xl">👨‍👩‍👧</span>
+          </div>
+          <div class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full mb-3">Bước 1</div>
+          <h3 class="font-bold text-gray-900 text-lg mb-3">Phụ huynh đăng ký</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Tạo tài khoản gia đình, thêm hồ sơ con. Hệ thống tự tạo tài khoản học sinh cho con theo.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-purple-200">
+            <span class="text-3xl">📝</span>
+          </div>
+          <div class="inline-block bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full mb-3">Bước 2</div>
+          <h3 class="font-bold text-gray-900 text-lg mb-3">Con làm bài tập</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Con luyện tập với hàng nghìn bài tập được thiết kế hấp dẫn. Hệ thống ghi lại từng kết quả để phân tích.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-green-200">
+            <span class="text-3xl">📈</span>
+          </div>
+          <div class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3">Bước 3</div>
+          <h3 class="font-bold text-gray-900 text-lg mb-3">AI phân tích & gợi ý</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">Thuật toán V3 phát hiện đúng chỗ con đang yếu, đề xuất bài luyện phù hợp. Phụ huynh theo dõi real-time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== ALGORITHM HIGHLIGHT ======== -->
+  <section id="algorithm" class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left — Visual -->
+        <div class="fade-in">
+          <div class="bg-gray-900 rounded-3xl p-6 shadow-2xl">
+            <div class="text-green-400 text-xs font-mono mb-4 opacity-60">// Phân tích điểm yếu — Học sinh: Minh Anh</div>
+            <!-- Label results -->
+            <div class="space-y-4">
+              <!-- Phép chia -->
+              <div class="bg-gray-800 rounded-xl p-4">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-white text-sm font-semibold">📚 Phép chia</span>
+                  <span class="text-xs bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full">🔴 Cần luyện ngay</span>
+                </div>
+                <div class="space-y-2">
+                  <div>
+                    <div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Câu dễ</span><span class="text-red-400">30%</span></div>
+                    <div class="bg-gray-700 rounded h-2"><div class="h-2 rounded bg-red-500 w-[30%]"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Câu TB</span><span class="text-orange-400">55%</span></div>
+                    <div class="bg-gray-700 rounded h-2"><div class="h-2 rounded bg-orange-400 w-[55%]"></div></div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs mb-1"><span class="text-gray-400">Câu khó</span><span class="text-yellow-400">75%</span></div>
+                    <div class="bg-gray-700 rounded h-2"><div class="h-2 rounded bg-yellow-400 w-[75%]"></div></div>
+                  </div>
+                </div>
+                <div class="mt-3 text-xs text-amber-300 bg-amber-500/10 rounded-lg p-2">
+                  ⚠️ Làm được câu khó nhưng yếu cơ bản — cần luyện câu dễ trước!
+                </div>
+              </div>
+
+              <!-- Phân số -->
+              <div class="bg-gray-800 rounded-xl p-4">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-white text-sm font-semibold">📚 Phân số</span>
+                  <span class="text-xs bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded-full">🟠 Nâng cao</span>
+                </div>
+                <div class="text-xs text-green-400">✓ Vững cơ bản (85%) — cần luyện câu trung bình</div>
+              </div>
+            </div>
+
+            <div class="mt-4 text-xs text-gray-500 font-mono text-center">
+              WEAKNESS_SCORE = ERROR_RATE × WEIGHT × CONFIDENCE
+            </div>
+          </div>
+        </div>
+
+        <!-- Right — Text -->
+        <div class="fade-in">
+          <div class="inline-block bg-purple-50 border border-purple-200 text-purple-700 text-sm font-medium px-4 py-2 rounded-full mb-6">
+            Thuật toán SED V3
+          </div>
+          <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6">
+            Không chỉ cho điểm —<br/>
+            <span class="text-purple-600">Hiểu con đang yếu ở đâu</span>
+          </h2>
+          <p class="text-gray-500 leading-relaxed mb-6">
+            Thuật toán SED V3 không chỉ đơn giản cộng điểm trung bình.
+            Nó <strong class="text-gray-700">phân tách theo từng mức độ khó</strong> —
+            phát hiện bất thường như "đúng câu khó nhưng sai câu dễ" —
+            điều mà giáo viên thủ công khó có thể nhận ra.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center shrink-0">
+                <span class="text-blue-600 text-sm">1</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-800 text-sm">Phân tích 3 mức: Dễ / Trung bình / Khó</div>
+                <div class="text-gray-500 text-xs mt-0.5">Dựa trên lý thuyết Bloom's Taxonomy trong giáo dục</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
+                <span class="text-purple-600 text-sm">2</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-800 text-sm">Bayesian Inference — không kết luận vội</div>
+                <div class="text-gray-500 text-xs mt-0.5">Cần đủ dữ liệu mới đưa ra nhận xét chính xác về điểm yếu</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center shrink-0">
+                <span class="text-green-600 text-sm">3</span>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-800 text-sm">Mastery First — thành thạo cơ bản trước</div>
+                <div class="text-gray-500 text-xs mt-0.5">Không cho làm câu khó khi chưa vững nền tảng — đúng khoa học</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FEATURES ======== -->
+  <section id="features" class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14 fade-in">
+        <div class="inline-block bg-green-50 border border-green-200 text-green-700 text-sm font-medium px-4 py-2 rounded-full mb-4">
+          Tính năng nổi bật
+        </div>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+          Cả gia đình cùng <span class="text-green-600">đồng hành</span>
+        </h2>
+        <p class="text-gray-500 max-w-lg mx-auto">4 loại tài khoản — mỗi người một vai trò, kết nối với nhau trong một hệ sinh thái giáo dục hoàn chỉnh</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 fade-in">
+        <!-- Guardian -->
+        <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:#F3E8FF">
+              <span class="text-2xl">👨‍👩‍👧</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">Phụ huynh / Người bảo trợ</div>
+              <div class="text-xs font-medium" style="color:#7C3AED">Tài khoản gia đình</div>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="text-purple-500">✓</span> Theo dõi tiến độ học từng con real-time</li>
+            <li class="flex items-center gap-2"><span class="text-purple-500">✓</span> Xem báo cáo điểm yếu chi tiết theo môn</li>
+            <li class="flex items-center gap-2"><span class="text-purple-500">✓</span> Đặt mục tiêu và theo dõi streak học tập</li>
+            <li class="flex items-center gap-2"><span class="text-purple-500">✓</span> Nhận thông báo khi con cần hỗ trợ</li>
+          </ul>
+        </div>
+
+        <!-- Student -->
+        <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:#FFF7ED">
+              <span class="text-2xl">🎓</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">Học sinh</div>
+              <div class="text-xs font-medium" style="color:#F97316">Tài khoản luyện tập</div>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="text-orange-500">✓</span> Bài tập cá nhân hoá theo đúng điểm yếu</li>
+            <li class="flex items-center gap-2"><span class="text-orange-500">✓</span> Streak 🔥 — duy trì động lực học mỗi ngày</li>
+            <li class="flex items-center gap-2"><span class="text-orange-500">✓</span> Gamification: huy hiệu, xếp hạng lớp</li>
+            <li class="flex items-center gap-2"><span class="text-orange-500">✓</span> Giao diện thân thiện, không gây áp lực</li>
+          </ul>
+        </div>
+
+        <!-- Teacher -->
+        <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:#ECFDF5">
+              <span class="text-2xl">👩‍🏫</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">Giáo viên</div>
+              <div class="text-xs font-medium" style="color:#059669">Tài khoản chuyên nghiệp</div>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Quản lý lớp học, giao bài, chấm điểm</li>
+            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Cảnh báo học sinh cần hỗ trợ đặc biệt</li>
+            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Báo cáo tiến độ lớp tổng quan & chi tiết</li>
+            <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Kho 500.000+ câu hỏi phân loại sẵn</li>
+          </ul>
+        </div>
+
+        <!-- Admin -->
+        <div class="card-hover bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:#EFF6FF">
+              <span class="text-2xl">⚙️</span>
+            </div>
+            <div>
+              <div class="font-bold text-gray-900">Quản trị viên</div>
+              <div class="text-xs font-medium" style="color:#2563EB">Tài khoản hệ thống</div>
+            </div>
+          </div>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Tổng quan toàn trường/tổ chức</li>
+            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Quản lý người dùng, gói dịch vụ</li>
+            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Báo cáo doanh thu và sử dụng</li>
+            <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Hỗ trợ đăng nhập để kiểm tra sự cố</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== GAMIFICATION ======== -->
+  <section class="py-20" style="background: linear-gradient(135deg, #1B2F6E 0%, #7C3AED 100%)">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="fade-in">
+          <div class="inline-block bg-white/10 border border-white/20 text-white text-sm font-medium px-4 py-2 rounded-full mb-6">
+            Học mà chơi, chơi mà học
+          </div>
+          <h2 class="text-3xl md:text-4xl font-black text-white mb-6">
+            Con không cần bị ép —<br/>
+            <span class="text-amber-400">Con tự muốn học</span>
+          </h2>
+          <p class="text-blue-200 leading-relaxed mb-8">
+            SED thiết kế trải nghiệm học như một trò chơi — streak lửa 🔥,
+            huy hiệu thành tích, xếp hạng lớp — tạo động lực tự nhiên
+            mà không cần cha mẹ nhắc nhở.
+          </p>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="bg-white/10 rounded-2xl p-4 text-center border border-white/20">
+              <div class="text-3xl mb-2">🔥</div>
+              <div class="text-white text-xs font-semibold">Streak hằng ngày</div>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-4 text-center border border-white/20">
+              <div class="text-3xl mb-2">🏅</div>
+              <div class="text-white text-xs font-semibold">Huy hiệu thành tích</div>
+            </div>
+            <div class="bg-white/10 rounded-2xl p-4 text-center border border-white/20">
+              <div class="text-3xl mb-2">🏆</div>
+              <div class="text-white text-xs font-semibold">Xếp hạng lớp</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <!-- Streak card -->
+          <div class="bg-white rounded-3xl p-6 shadow-2xl">
+            <div class="text-center mb-6">
+              <div class="text-6xl mb-2">🔥</div>
+              <div class="text-4xl font-black text-orange-500">14 ngày</div>
+              <div class="text-gray-500 text-sm mt-1">Streak học tập liên tiếp</div>
+            </div>
+            <!-- Weekly dots -->
+            <div class="flex justify-between mb-6">
+              {['T2','T3','T4','T5','T6','T7','CN'].map((d,i) => `
+              <div class="text-center">
+                <div class="w-8 h-8 rounded-full ${i < 6 ? 'bg-orange-400' : 'bg-gray-100'} flex items-center justify-center mb-1">
+                  <span class="text-xs ${i < 6 ? 'text-white' : 'text-gray-400'}">✓</span>
+                </div>
+                <div class="text-xs text-gray-400">${d}</div>
+              </div>`).join('')}
+            </div>
+            <!-- Goal progress -->
+            <div class="bg-gray-50 rounded-xl p-4">
+              <div class="flex justify-between text-sm mb-2">
+                <span class="font-semibold text-gray-700">Mục tiêu hôm nay</span>
+                <span class="text-green-600 font-bold">3/3 bài ✓</span>
+              </div>
+              <div class="bg-gray-200 rounded-full h-3">
+                <div class="h-3 rounded-full bg-gradient-to-r from-green-400 to-green-600 w-full"></div>
+              </div>
+              <div class="text-center text-xs text-green-600 mt-2 font-semibold">🎉 Hoàn thành mục tiêu hôm nay!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== TESTIMONIALS ======== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14 fade-in">
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+          Phụ huynh nói gì về <span class="text-blue-600">SED?</span>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 fade-in">
+        <div class="card-hover bg-blue-50 rounded-2xl p-6 border border-blue-100">
+          <div class="flex gap-1 mb-4">
+            <span class="text-amber-400">★★★★★</span>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4">
+            "Con tôi từng rất ghét học Toán. Sau 1 tháng dùng SED, con tự giác mở app mỗi tối mà không cần nhắc."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-blue-300 rounded-full flex items-center justify-center text-white text-xs font-bold">TH</div>
+            <div>
+              <div class="text-sm font-semibold text-gray-800">Chị Thu Hà</div>
+              <div class="text-xs text-gray-400">Phụ huynh, Hà Nội</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-hover bg-green-50 rounded-2xl p-6 border border-green-100">
+          <div class="flex gap-1 mb-4">
+            <span class="text-amber-400">★★★★★</span>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4">
+            "Tôi thích nhất là tôi có thể thấy chính xác con đang yếu ở đâu, thay vì chỉ biết 'học chưa tốt'."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-green-300 rounded-full flex items-center justify-center text-white text-xs font-bold">MN</div>
+            <div>
+              <div class="text-sm font-semibold text-gray-800">Anh Minh Nguyễn</div>
+              <div class="text-xs text-gray-400">Phụ huynh, TP.HCM</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-hover bg-purple-50 rounded-2xl p-6 border border-purple-100">
+          <div class="flex gap-1 mb-4">
+            <span class="text-amber-400">★★★★★</span>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed mb-4">
+            "Giáo viên của con nói con tiến bộ rõ rệt chỉ sau 6 tuần. Tôi tin thuật toán SED thực sự hiệu quả."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-purple-300 rounded-full flex items-center justify-center text-white text-xs font-bold">LT</div>
+            <div>
+              <div class="text-sm font-semibold text-gray-800">Chị Lan Trần</div>
+              <div class="text-xs text-gray-400">Phụ huynh, Đà Nẵng</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== PRICING CTA ======== -->
+  <section id="pricing" class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-6 text-center fade-in">
+      <div class="inline-block bg-amber-50 border border-amber-200 text-amber-700 text-sm font-medium px-4 py-2 rounded-full mb-6">
+        Bắt đầu ngay hôm nay
+      </div>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+        Đầu tư nhỏ, <span class="gradient-text">tương lai lớn</span>
+      </h2>
+      <p class="text-gray-500 max-w-lg mx-auto mb-12">
+        Dùng thử miễn phí ngay hôm nay. Không cần thẻ tín dụng.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <!-- Free -->
+        <div class="card-hover bg-white rounded-3xl p-8 border border-gray-200 shadow-sm text-left">
+          <div class="text-sm font-semibold text-gray-500 mb-2">Gói Miễn phí</div>
+          <div class="text-4xl font-black text-gray-900 mb-1">0₫</div>
+          <div class="text-gray-400 text-sm mb-6">Mãi mãi</div>
+          <ul class="space-y-3 text-sm text-gray-600 mb-8">
+            <li class="flex gap-2"><span class="text-green-500">✓</span> 1 tài khoản học sinh</li>
+            <li class="flex gap-2"><span class="text-green-500">✓</span> 10 bài tập/ngày</li>
+            <li class="flex gap-2"><span class="text-green-500">✓</span> Báo cáo cơ bản</li>
+            <li class="flex gap-2"><span class="text-gray-300">✗</span> Phân tích điểm yếu nâng cao</li>
+          </ul>
+          <a href="https://sed.vn" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl transition-all">
+            Dùng miễn phí
+          </a>
+        </div>
+
+        <!-- Gia đình -->
+        <div class="card-hover bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl p-8 text-left relative overflow-hidden shadow-xl shadow-blue-200">
+          <div class="absolute top-4 right-4 bg-amber-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
+            Phổ biến nhất
+          </div>
+          <div class="text-sm font-semibold text-blue-200 mb-2">Gói Gia đình</div>
+          <div class="text-4xl font-black text-white mb-1">299.000₫</div>
+          <div class="text-blue-300 text-sm mb-6">/tháng · tối đa 3 con</div>
+          <ul class="space-y-3 text-sm text-blue-100 mb-8">
+            <li class="flex gap-2"><span class="text-amber-400">✓</span> Không giới hạn bài tập</li>
+            <li class="flex gap-2"><span class="text-amber-400">✓</span> Phân tích điểm yếu AI V3</li>
+            <li class="flex gap-2"><span class="text-amber-400">✓</span> Báo cáo chi tiết cho phụ huynh</li>
+            <li class="flex gap-2"><span class="text-amber-400">✓</span> Kết nối giáo viên</li>
+          </ul>
+          <a href="https://sed.vn" class="block w-full text-center bg-amber-400 hover:bg-amber-300 text-gray-900 font-bold py-3 rounded-xl transition-all">
+            Đăng ký ngay →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FINAL CTA ======== -->
+  <section class="py-20 hero-gradient relative overflow-hidden">
+    <div class="blob w-64 h-64 bg-purple-500 -top-10 -right-10"></div>
+    <div class="blob w-48 h-48 bg-amber-400 bottom-0 left-10"></div>
+    <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+        Chuyển đổi số<br/>trong gia đình bạn<br/>
+        <span class="text-amber-400">bắt đầu từ hôm nay</span>
+      </h2>
+      <p class="text-blue-200 text-lg mb-8">
+        Kiến tạo thế hệ công dân toàn cầu — Simple, Engaging, Dynamic
+      </p>
+      <a href="https://sed.vn" class="inline-block bg-amber-400 hover:bg-amber-300 text-gray-900 font-black text-lg px-10 py-5 rounded-2xl transition-all shadow-lg shadow-amber-500/30">
+        Bắt đầu miễn phí — Ngay bây giờ →
+      </a>
+      <div class="text-blue-300 text-sm mt-4">Không cần thẻ tín dụng · Dùng thử 14 ngày miễn phí</div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:#1B2F6E">
+              <span class="text-white font-bold text-sm">S</span>
+            </div>
+            <span class="text-white font-bold text-lg">SED APP</span>
+          </div>
+          <p class="text-sm leading-relaxed mb-4 text-gray-500">
+            Nền tảng giáo dục thông minh, cá nhân hoá cho học sinh Việt Nam.<br/>
+            Shaping Every Dream — Định hình và nuôi dưỡng mọi ước mơ.
+          </p>
+          <!-- Color dots — brand diversity -->
+          <div class="flex gap-2">
+            <span class="color-dot" style="background:#1B2F6E"></span>
+            <span class="color-dot" style="background:#C9A227"></span>
+            <span class="color-dot" style="background:#7C3AED"></span>
+            <span class="color-dot" style="background:#F97316"></span>
+            <span class="color-dot" style="background:#059669"></span>
+            <span class="color-dot" style="background:#3B82F6"></span>
+          </div>
+        </div>
+        <div>
+          <div class="text-white font-semibold text-sm mb-4">Sản phẩm</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">Tính năng</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Gói học</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Thuật toán SED</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Đăng nhập</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="text-white font-semibold text-sm mb-4">Liên hệ</div>
+          <ul class="space-y-2 text-sm">
+            <li>🌐 <a href="https://sed.vn" class="hover:text-white transition-colors">sed.vn</a></li>
+            <li>📧 <span>support@sed.vn</span></li>
+            <li>💬 <a href="#" class="hover:text-white transition-colors">Zalo: 0xxx.xxx.xxx</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-xs text-gray-600">© 2025 iSED — Viện Khoa Học và Phát Triển Giáo Dục. All rights reserved.</div>
+        <div class="text-xs text-gray-600">Simple · Engaging · Dynamic</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll animation script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Animate weakness bars on scroll
+    const barsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-width]').forEach(bar => {
+            bar.style.width = bar.dataset.width;
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+  </script>
+</body>
+</html>
