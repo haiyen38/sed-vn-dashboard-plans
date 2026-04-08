@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SED – Teacher Dashboard Mockup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { font-family: 'Inter', sans-serif; }
+  body { background: #F0FDF4; }
+  .card { background:#fff; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+  .stat-card { border-left: 4px solid #059669; }
+  .sidebar { width:240px; min-height:100vh; background:#1B2F6E; display:flex; flex-direction:column; padding:16px 12px; flex-shrink:0; }
+  .nav-item { display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:8px; font-size:14px; color:#A0AEC0; cursor:pointer; }
+  .nav-item.active { background:#059669; color:#fff; font-weight:600; }
+  .btn-primary { background:#059669; color:#fff; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; border:none; }
+  .btn-outline { background:#fff; color:#059669; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; border:1px solid #059669; }
+  .alert-red { background:#FEF2F2; border-left:3px solid #EF4444; border-radius:8px; padding:10px 12px; }
+  .alert-yellow { background:#FFFBEB; border-left:3px solid #F59E0B; border-radius:8px; padding:10px 12px; }
+  .class-card { border:1px solid #D1FAE5; border-radius:10px; padding:14px; background:#F0FDF4; }
+  .badge { display:inline-block; padding:2px 8px; border-radius:99px; font-size:11px; font-weight:600; }
+  .badge-new { background:#DCFCE7; color:#166534; }
+  .badge-graded { background:#E0E7FF; color:#3730A3; }
+  .progress-bar { height:6px; background:#D1FAE5; border-radius:99px; overflow:hidden; }
+  .progress-fill { height:100%; background:#059669; border-radius:99px; }
+</style>
+</head>
+<body>
+
+<div class="bg-green-50 border-b border-green-200 px-6 py-2 flex gap-4 items-center text-sm">
+  <span class="font-semibold text-green-800">Mockup:</span>
+  <span class="text-green-700 italic">Teacher Dashboard — /mentor/dashboard</span>
+  <span class="ml-auto text-xs text-green-600">Tài khoản Giáo viên · bán riêng · tạo lớp độc lập</span>
+</div>
+
+<div class="flex">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="flex items-center gap-3 mb-6 px-2">
+      <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+        <span class="text-blue-900 font-black text-sm">S</span>
+      </div>
+      <span class="text-white font-semibold text-sm">SED Platform</span>
+    </div>
+    <div class="space-y-1">
+      <div class="nav-item active">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        <span>Trang chủ</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
+        <span>Đề thi</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Câu hỏi</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>
+        <span>Bài làm học sinh</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+        <span>Lớp học</span>
+      </div>
+    </div>
+    <div class="mt-auto">
+      <div style="border-top:1px solid #ffffff22; margin-bottom:12px;"></div>
+      <div class="flex items-center gap-3 px-2">
+        <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm">T</div>
+        <div>
+          <div class="text-white text-xs font-semibold">Phạm Thanh</div>
+          <div class="text-gray-400 text-xs">Giáo viên Toán</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 p-6">
+
+    <!-- Greeting -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <div class="text-gray-500 text-sm">Thứ Tư, 8 tháng 4 ☀️</div>
+        <h1 class="text-xl font-bold text-gray-800">Xin chào, Cô Thanh! ✨</h1>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-primary flex items-center gap-2">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Tạo đề thi
+        </button>
+        <button class="btn-outline flex items-center gap-2">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
+          Giao bài tập
+        </button>
+      </div>
+    </div>
+
+    <!-- Overview stats -->
+    <div class="grid grid-cols-4 gap-4 mb-6">
+      <div class="card stat-card p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" stroke="#059669" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          <span class="text-xs text-gray-500">Lớp đang dạy</span>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">2</div>
+      </div>
+      <div class="card stat-card p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" stroke="#059669" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <span class="text-xs text-gray-500">Tổng học sinh</span>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">47</div>
+      </div>
+      <div class="card stat-card p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" stroke="#059669" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          <span class="text-xs text-gray-500">Bài làm mới</span>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">8</div>
+        <div class="text-xs text-green-600 mt-1 font-medium">chưa xem</div>
+      </div>
+      <div class="card stat-card p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" stroke="#059669" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
+          <span class="text-xs text-gray-500">Tổng đề thi</span>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">104</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-5">
+
+      <!-- Left col -->
+      <div class="space-y-4">
+
+        <!-- Students need attention -->
+        <div class="card p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-semibold text-gray-700 text-sm flex items-center gap-2">
+              <span>🚨</span> Học sinh cần chú ý
+              <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+            </div>
+            <a href="#" class="text-xs text-green-600">Xem báo cáo →</a>
+          </div>
+          <div class="space-y-2">
+            <div class="alert-red">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="text-xs font-semibold text-gray-800">Nguyễn Văn A <span class="text-gray-400 font-normal">· Trạng Nguyên</span></div>
+                  <div class="text-xs text-red-600 mt-0.5">Phân số: 42% đúng — Cần hỗ trợ gấp</div>
+                </div>
+                <span class="text-red-400 text-lg">🔴</span>
+              </div>
+            </div>
+            <div class="alert-yellow">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="text-xs font-semibold text-gray-800">Trần Thị B <span class="text-gray-400 font-normal">· Toán 1 Cô Thảo</span></div>
+                  <div class="text-xs text-yellow-600 mt-0.5">3 ngày chưa học</div>
+                </div>
+                <span class="text-yellow-400 text-lg">🟡</span>
+              </div>
+            </div>
+            <div class="alert-red">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="text-xs font-semibold text-gray-800">Lê Văn C <span class="text-gray-400 font-normal">· Trạng Nguyên</span></div>
+                  <div class="text-xs text-red-600 mt-0.5">Điểm giảm 20% so với tuần trước</div>
+                </div>
+                <span class="text-red-400 text-lg">🔴</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New submissions -->
+        <div class="card p-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-semibold text-gray-700 text-sm flex items-center gap-2">
+              📥 Bài làm mới hôm nay
+            </div>
+            <a href="#" class="text-xs text-green-600">Xem tất cả →</a>
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-2 bg-green-50 rounded-lg">
+              <div>
+                <div class="text-xs font-medium text-gray-700">Nguyễn Văn D — Đề Toán 5 Phân số</div>
+                <div class="text-xs text-gray-400">5 phút trước</div>
+              </div>
+              <span class="badge badge-new">Mới</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-green-50 rounded-lg">
+              <div>
+                <div class="text-xs font-medium text-gray-700">Phạm Thị E — Đề Toán 5 Hình học</div>
+                <div class="text-xs text-gray-400">12 phút trước</div>
+              </div>
+              <span class="badge badge-new">Mới</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg border border-gray-100">
+              <div>
+                <div class="text-xs font-medium text-gray-700">Trần Văn F — Đề Toán 5 Số thập phân</div>
+                <div class="text-xs text-gray-400">1 giờ trước</div>
+              </div>
+              <span class="badge badge-graded">Đã chấm</span>
+            </div>
+          </div>
+          <button class="w-full mt-3 text-center text-xs text-green-600 font-medium border border-green-200 rounded-lg py-2 hover:bg-green-50">
+            Xem 8 bài làm mới →
+          </button>
+        </div>
+      </div>
+
+      <!-- Right col: Class summary cards -->
+      <div class="space-y-4">
+        <div class="font-semibold text-gray-700 text-sm mb-0">📊 Thống kê lớp học</div>
+
+        <div class="class-card">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <div class="font-semibold text-gray-800 text-sm">🏫 Trạng Nguyên Toàn Tài !!!!</div>
+              <div class="text-xs text-gray-400 mt-0.5">Mã: KDBBDMD5 · 23 học sinh</div>
+            </div>
+            <span class="bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">Active</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div class="bg-white rounded-lg p-2 text-center">
+              <div class="text-lg font-bold text-gray-800">45</div>
+              <div class="text-xs text-gray-400">lượt làm tuần này</div>
+            </div>
+            <div class="bg-white rounded-lg p-2 text-center">
+              <div class="text-lg font-bold text-green-600">85%</div>
+              <div class="text-xs text-gray-400">tỉ lệ đúng TB</div>
+            </div>
+          </div>
+          <div class="progress-bar mb-3">
+            <div class="progress-fill" style="width:85%"></div>
+          </div>
+          <div class="flex gap-2">
+            <button class="btn-outline flex-1 text-xs py-1.5">Xem lớp</button>
+            <button class="btn-primary flex-1 text-xs py-1.5">+ Giao bài tập</button>
+          </div>
+        </div>
+
+        <div class="class-card">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <div class="font-semibold text-gray-800 text-sm">🏫 Toán 1 Cô Thảo</div>
+              <div class="text-xs text-gray-400 mt-0.5">Mã: 9GDT8USJ · 24 học sinh</div>
+            </div>
+            <span class="bg-green-100 text-green-700 text-xs font-semibold px-2 py-0.5 rounded-full">Active</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div class="bg-white rounded-lg p-2 text-center">
+              <div class="text-lg font-bold text-gray-800">30</div>
+              <div class="text-xs text-gray-400">lượt làm tuần này</div>
+            </div>
+            <div class="bg-white rounded-lg p-2 text-center">
+              <div class="text-lg font-bold text-yellow-600">72%</div>
+              <div class="text-xs text-gray-400">tỉ lệ đúng TB</div>
+            </div>
+          </div>
+          <div class="progress-bar mb-3">
+            <div class="progress-fill" style="width:72%; background:#F59E0B;"></div>
+          </div>
+          <div class="flex gap-2">
+            <button class="btn-outline flex-1 text-xs py-1.5">Xem lớp</button>
+            <button class="btn-primary flex-1 text-xs py-1.5">+ Giao bài tập</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SED – Admin Dashboard Mockup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { font-family: 'Inter', sans-serif; }
+  body { background: #EFF6FF; }
+  .card { background:#fff; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+  .stat-card { border-left: 4px solid #2563EB; }
+  .sidebar { width:240px; min-height:100vh; background:#1B2F6E; display:flex; flex-direction:column; padding:16px 12px; flex-shrink:0; }
+  .nav-item { display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:8px; font-size:14px; color:#A0AEC0; cursor:pointer; }
+  .nav-item.active { background:#2563EB; color:#fff; font-weight:600; }
+  .nav-section { font-size:10px; font-weight:700; color:#6B7280; text-transform:uppercase; letter-spacing:0.08em; padding:8px 12px 2px; margin-top:8px; }
+  .btn-primary { background:#2563EB; color:#fff; padding:8px 14px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; border:none; }
+  .btn-ghost { background:transparent; color:#2563EB; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; border:1px solid #BFDBFE; }
+  .badge { display:inline-block; padding:2px 8px; border-radius:99px; font-size:11px; font-weight:600; }
+  .badge-success { background:#DCFCE7; color:#166534; }
+  .badge-warn { background:#FEF3C7; color:#92400E; }
+  .badge-error { background:#FEE2E2; color:#991B1B; }
+  .badge-role { background:#EDE9FE; color:#5B21B6; }
+  .delta-up { color:#16A34A; font-size:12px; font-weight:600; }
+  .delta-down { color:#DC2626; font-size:12px; font-weight:600; }
+  .task-item { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-radius:8px; }
+  .task-item.urgent { background:#FEF2F2; border:1px solid #FECACA; }
+  .revenue-card { background:linear-gradient(135deg, #1B2F6E, #2563EB); border-radius:12px; padding:20px; color:#fff; }
+  .user-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid #F3F4F6; }
+  .user-row:last-child { border-bottom:none; }
+  .avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff; flex-shrink:0; }
+</style>
+</head>
+<body>
+
+<div class="bg-blue-50 border-b border-blue-200 px-6 py-2 flex gap-4 items-center text-sm">
+  <span class="font-semibold text-blue-800">Mockup:</span>
+  <span class="text-blue-700 italic">Admin Dashboard — /admin/dashboard</span>
+  <span class="ml-auto text-xs text-blue-600">Quản trị hệ thống · Vận hành nội bộ</span>
+</div>
+
+<div class="flex">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="flex items-center gap-3 mb-6 px-2">
+      <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+        <span class="text-blue-900 font-black text-sm">S</span>
+      </div>
+      <span class="text-white font-semibold text-sm">SED Admin</span>
+    </div>
+    <div class="space-y-0.5">
+      <div class="nav-item active">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        <span>Trang chủ</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <span>Thành viên</span>
+      </div>
+      <div class="nav-section">Nghiệp vụ</div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <span>Giáo trình</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.57l1.65-7.43H6"/></svg>
+        <span>Quản lý Prompt</span>
+      </div>
+      <div class="nav-section">Vận hành</div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <span>Thanh toán</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        <span>Nâng cấp TK</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
+        <span>Logs hệ thống</span>
+      </div>
+    </div>
+    <div class="mt-auto">
+      <div style="border-top:1px solid #ffffff22; margin-bottom:12px;"></div>
+      <div class="flex items-center gap-3 px-2">
+        <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm">A</div>
+        <div>
+          <div class="text-white text-xs font-semibold">Admin</div>
+          <div class="text-gray-400 text-xs">admin@sed.vn</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 p-6">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <div class="text-gray-500 text-sm">Thứ Tư, 8 tháng 4</div>
+        <h1 class="text-xl font-bold text-gray-800">Tổng quan hệ thống</h1>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-primary flex items-center gap-2">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Tạo người dùng
+        </button>
+        <button class="btn-ghost flex items-center gap-2">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          Làm mới
+        </button>
+      </div>
+    </div>
+
+    <!-- System stats row -->
+    <div class="grid grid-cols-4 gap-4 mb-5">
+      <div class="card stat-card p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" stroke="#2563EB" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          <span class="text-xs text-gray-500">Đăng ký hôm nay</span>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">12</div>
+        <div class="delta-up mt-1">↑ +4 so với hôm qua</div>
+      </div>
+      <div class="card stat-card p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" stroke="#2563EB" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span class="text-xs text-gray-500">Users active</span>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">238</div>
+        <div class="text-xs text-gray-400 mt-1">đang hoạt động hôm nay</div>
+      </div>
+      <div class="card stat-card p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" stroke="#2563EB" fill="none" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <span class="text-xs text-gray-500">Giao dịch hôm nay</span>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">52</div>
+        <div class="delta-up mt-1">↑ +8 so với hôm qua</div>
+      </div>
+      <div class="card stat-card p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <svg width="14" height="14" stroke="#2563EB" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <span class="text-xs text-gray-500">Tổng người dùng</span>
+        </div>
+        <div class="text-3xl font-bold text-gray-800">1,842</div>
+        <div class="text-xs text-gray-400 mt-1">tổng cộng</div>
+      </div>
+    </div>
+
+    <!-- 3-col layout -->
+    <div class="grid grid-cols-3 gap-5">
+
+      <!-- Col 1: Revenue -->
+      <div class="space-y-4">
+        <div class="revenue-card">
+          <div class="flex items-center gap-2 mb-4">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            <span class="font-semibold text-sm">Doanh thu</span>
+          </div>
+          <div class="mb-3">
+            <div class="text-xs text-blue-200 mb-1">Hôm nay</div>
+            <div class="text-2xl font-black">1.200.000 đ</div>
+          </div>
+          <div class="border-t border-white/20 pt-3">
+            <div class="text-xs text-blue-200 mb-1">Tuần này</div>
+            <div class="text-xl font-bold">8.500.000 đ</div>
+            <div class="text-xs text-green-300 mt-1 font-medium">↑ +15% so với tuần trước</div>
+          </div>
+          <button class="mt-4 w-full text-center text-xs text-blue-200 hover:text-white font-medium">
+            Xem chi tiết thanh toán →
+          </button>
+        </div>
+
+        <!-- Pending tasks -->
+        <div class="card p-4">
+          <div class="font-semibold text-gray-700 text-sm mb-3 flex items-center gap-2">
+            ⚠️ Cần xử lý
+            <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">5</span>
+          </div>
+          <div class="space-y-2">
+            <div class="task-item urgent">
+              <div>
+                <div class="text-xs font-semibold text-gray-800">3 đơn hàng chờ xác nhận</div>
+                <div class="text-xs text-gray-500">Membership orders</div>
+              </div>
+              <button class="btn-ghost text-xs">Xem →</button>
+            </div>
+            <div class="task-item urgent">
+              <div>
+                <div class="text-xs font-semibold text-gray-800">2 giao dịch lỗi</div>
+                <div class="text-xs text-gray-500">SEPAY gateway</div>
+              </div>
+              <button class="btn-ghost text-xs">Xem →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: New users -->
+      <div class="card p-4">
+        <div class="flex items-center justify-between mb-4">
+          <div class="font-semibold text-gray-700 text-sm">👥 Người dùng mới</div>
+          <a href="#" class="text-xs text-blue-600">Xem tất cả →</a>
+        </div>
+        <div class="space-y-0">
+          <div class="user-row">
+            <div class="avatar" style="background:#7C3AED;">L</div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-semibold text-gray-800 truncate">lan.nguyen@gmail.com</div>
+              <div class="text-xs text-gray-400">Nhà giáo dục · vừa xong</div>
+            </div>
+            <span class="badge badge-role">NbT</span>
+          </div>
+          <div class="user-row">
+            <div class="avatar" style="background:#059669;">T</div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-semibold text-gray-800 truncate">trung.pham@gmail.com</div>
+              <div class="text-xs text-gray-400">Nhà giáo dục · 2 phút trước</div>
+            </div>
+            <button class="btn-ghost text-xs">Login as</button>
+          </div>
+          <div class="user-row">
+            <div class="avatar" style="background:#F97316;">M</div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-semibold text-gray-800 truncate">mai.thi@gmail.com</div>
+              <div class="text-xs text-gray-400">Nhà giáo dục · 15 phút trước</div>
+            </div>
+            <button class="btn-ghost text-xs">Login as</button>
+          </div>
+          <div class="user-row">
+            <div class="avatar" style="background:#2563EB;">H</div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-semibold text-gray-800 truncate">hung.nguyen@gmail.com</div>
+              <div class="text-xs text-gray-400">Giáo viên · 30 phút trước</div>
+            </div>
+            <button class="btn-ghost text-xs">Login as</button>
+          </div>
+          <div class="user-row">
+            <div class="avatar" style="background:#0D9488;">P</div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-semibold text-gray-800 truncate">phuong.le@gmail.com</div>
+              <div class="text-xs text-gray-400">Nhà giáo dục · 45 phút trước</div>
+            </div>
+            <button class="btn-ghost text-xs">Login as</button>
+          </div>
+        </div>
+
+        <!-- Recent orders -->
+        <div class="mt-4 pt-4 border-t border-gray-100">
+          <div class="font-semibold text-gray-700 text-sm mb-3">📦 Đơn hàng gần nhất</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between p-2 rounded-lg bg-green-50">
+              <div>
+                <div class="text-xs font-medium text-gray-700">Gói Gia đình · Bộ GD</div>
+                <div class="text-xs text-gray-400">lan.nguyen@gmail.com</div>
+              </div>
+              <div class="text-right">
+                <div class="text-xs font-bold text-gray-800">100.000 đ</div>
+                <span class="badge badge-success">Thành công</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-yellow-50">
+              <div>
+                <div class="text-xs font-medium text-gray-700">Gói GV · Cambridge</div>
+                <div class="text-xs text-gray-400">hung.nguyen@gmail.com</div>
+              </div>
+              <div class="text-right">
+                <div class="text-xs font-bold text-gray-800">200.000 đ</div>
+                <span class="badge badge-warn">Chờ xác nhận</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 3: Quick actions + Logs -->
+      <div class="space-y-4">
+        <div class="card p-4">
+          <div class="font-semibold text-gray-700 text-sm mb-3">⚡ Thao tác nhanh</div>
+          <div class="space-y-2">
+            <button class="btn-primary w-full flex items-center gap-2 justify-center py-2.5">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Tạo người dùng mới
+            </button>
+            <button class="w-full flex items-center gap-2 justify-center py-2.5 border border-blue-200 rounded-lg text-blue-700 text-sm font-medium hover:bg-blue-50">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+              Quản lý Giáo trình
+            </button>
+            <button class="w-full flex items-center gap-2 justify-center py-2.5 border border-blue-200 rounded-lg text-blue-700 text-sm font-medium hover:bg-blue-50">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+              Quản lý Prompt AI
+            </button>
+            <button class="w-full flex items-center gap-2 justify-center py-2.5 border border-blue-200 rounded-lg text-blue-700 text-sm font-medium hover:bg-blue-50">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
+              Xem Logs hệ thống
+            </button>
+          </div>
+        </div>
+
+        <!-- System health -->
+        <div class="card p-4">
+          <div class="font-semibold text-gray-700 text-sm mb-3">🖥️ Trạng thái hệ thống</div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-gray-600">API Server</span>
+              <span class="flex items-center gap-1 text-xs text-green-600 font-medium">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+                Bình thường
+              </span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-gray-600">Database</span>
+              <span class="flex items-center gap-1 text-xs text-green-600 font-medium">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+                Bình thường
+              </span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-gray-600">Payment Gateway</span>
+              <span class="flex items-center gap-1 text-xs text-yellow-600 font-medium">
+                <span class="w-2 h-2 rounded-full bg-yellow-500 inline-block"></span>
+                Chậm nhẹ
+              </span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-gray-600">CDN / Storage</span>
+              <span class="flex items-center gap-1 text-xs text-green-600 font-medium">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+                Bình thường
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

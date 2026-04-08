@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SED – Student Dashboard Mockup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { font-family: 'Inter', sans-serif; }
+  body { background: #FFF7F0; }
+  :root { --student: #F97316; }
+  .card { background:#fff; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+  .stat-card { border-left: 4px solid #F97316; }
+  .sidebar { width:240px; min-height:100vh; background:#1B2F6E; display:flex; flex-direction:column; padding:16px 12px; flex-shrink:0; }
+  .nav-item { display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:8px; font-size:14px; color:#A0AEC0; cursor:pointer; }
+  .nav-item.active { background:#F97316; color:#fff; font-weight:600; }
+  .btn-cta { background:#F97316; color:#fff; padding:12px 24px; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; border:none; width:100%; text-align:center; box-shadow: 0 4px 14px rgba(249,115,22,0.4); }
+  .btn-cta:hover { background:#EA6C0A; }
+  .btn-secondary { background:#fff; color:#F97316; padding:10px 20px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; border:2px solid #F97316; }
+  .progress-track { height:10px; background:#E5E7EB; border-radius:99px; overflow:hidden; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:99px; font-size:11px; font-weight:500; }
+  .streak-badge { background: linear-gradient(135deg, #FFF7ED, #FED7AA); border:2px solid #FB923C; border-radius:16px; padding:16px; }
+  .assignment-card { border-left:3px solid #F97316; background:#FFF7ED; border-radius:8px; padding:12px; }
+  .weakness-item { background:#FFF7F0; border-radius:8px; padding:10px 12px; display:flex; align-items:center; justify-content:space-between; }
+  .rank-badge { background:linear-gradient(135deg,#FEF3C7,#FDE68A); border:1px solid #F59E0B; border-radius:8px; padding:10px; text-align:center; }
+</style>
+</head>
+<body>
+
+<!-- State selector -->
+<div class="bg-orange-50 border-b border-orange-200 px-6 py-2 flex gap-4 items-center text-sm">
+  <span class="font-semibold text-orange-800">Mockup State:</span>
+  <button onclick="showState('empty')" class="px-3 py-1 rounded-full text-xs font-medium bg-orange-200 text-orange-900 hover:bg-orange-300">① Ngày đầu tiên</button>
+  <button onclick="showState('streak')" class="px-3 py-1 rounded-full text-xs font-medium bg-orange-200 text-orange-900 hover:bg-orange-300">② Đang học (streak 7)</button>
+  <button onclick="showState('done')" class="px-3 py-1 rounded-full text-xs font-medium bg-orange-200 text-orange-900 hover:bg-orange-300">③ Hoàn thành mục tiêu</button>
+  <button onclick="showState('broken')" class="px-3 py-1 rounded-full text-xs font-medium bg-orange-200 text-orange-900 hover:bg-orange-300">④ Streak bị gián đoạn</button>
+  <span class="ml-auto text-orange-700 italic">Student Dashboard — /study/dashboard</span>
+</div>
+
+<div class="flex">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="flex items-center gap-3 mb-6 px-2">
+      <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+        <span class="text-blue-900 font-black text-sm">S</span>
+      </div>
+      <span class="text-white font-semibold text-sm">SED Platform</span>
+    </div>
+    <div class="space-y-1">
+      <div class="nav-item active">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        <span>Trang chủ</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
+        <span>Ngân hàng đề</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <span>Đề đã làm</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Khắc phục điểm yếu</span>
+      </div>
+      <div class="nav-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <span>Lớp học của bạn</span>
+      </div>
+    </div>
+    <div class="mt-auto">
+      <div style="border-top:1px solid #ffffff22; margin-bottom:12px;"></div>
+      <div class="flex items-center gap-3 px-2">
+        <div class="w-8 h-8 rounded-full bg-orange-400 flex items-center justify-center text-white font-bold text-sm">M</div>
+        <div>
+          <div class="text-white text-xs font-semibold">Minh Tuấn</div>
+          <div class="text-gray-400 text-xs">Lớp 5 · Toán</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-1 p-6">
+
+    <!-- STATE 1: EMPTY (ngày đầu) -->
+    <div id="state-empty" class="hidden">
+      <div class="text-gray-500 text-sm mb-1">Thứ Ba, 7 tháng 4</div>
+      <h1 class="text-xl font-bold text-gray-800 mb-6">Xin chào, Minh Tuấn! 👋</h1>
+      <div class="max-w-md mx-auto mt-8 text-center">
+        <div class="text-6xl mb-4">🚀</div>
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Bắt đầu hành trình học tập!</h2>
+        <p class="text-gray-500 mb-6 text-sm">Làm bài đầu tiên để bắt đầu streak của bạn và khám phá kiến thức</p>
+        <button class="btn-cta">▶ Làm bài đầu tiên</button>
+        <div class="mt-4 text-xs text-gray-400">Gợi ý: Toán 5 · Bộ Giáo Dục</div>
+      </div>
+    </div>
+
+    <!-- STATE: STREAK BROKEN -->
+    <div id="state-broken" class="hidden">
+      <div class="bg-orange-50 border border-orange-200 rounded-xl px-4 py-3 mb-4 flex items-center gap-3">
+        <span class="text-xl">😢</span>
+        <div>
+          <div class="text-sm font-semibold text-orange-800">Streak bị gián đoạn</div>
+          <div class="text-xs text-orange-600">Hôm nay bắt đầu lại nhé! Bạn vẫn có thể làm được 💪</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATE 2 & 3: ACTIVE -->
+    <div id="state-active" class="hidden">
+      <div class="text-gray-500 text-sm mb-0.5">Thứ Ba, 7 tháng 4</div>
+      <h1 class="text-xl font-bold text-gray-800 mb-4">Xin chào, Minh Tuấn! 👋</h1>
+
+      <!-- Confetti banner (state 3 only) -->
+      <div id="confetti-banner" class="hidden rounded-xl p-3 mb-4 flex items-center gap-3" style="background:linear-gradient(135deg,#D1FAE5,#A7F3D0); border:1px solid #34D399;">
+        <span class="text-2xl">🎉</span>
+        <div>
+          <div class="font-semibold text-green-800 text-sm">Xuất sắc! Hoàn thành mục tiêu hôm nay!</div>
+          <div class="text-green-600 text-xs">Bạn đã làm đủ 3 đề. Tiếp tục làm thêm nếu muốn!</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-5">
+
+        <!-- Left col -->
+        <div class="space-y-4">
+          <!-- Streak -->
+          <div class="streak-badge">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-2xl">🔥</span>
+              <div id="streak-num" class="text-4xl font-black text-orange-500">7</div>
+            </div>
+            <div class="text-sm font-semibold text-orange-700">ngày học liên tiếp</div>
+            <div class="text-xs text-orange-500 mt-1">⭐ Tiếp tục để lên 10 ngày!</div>
+          </div>
+
+          <!-- Daily goal -->
+          <div class="card p-4">
+            <div class="font-semibold text-gray-700 text-sm mb-3">🎯 Mục tiêu hôm nay</div>
+            <!-- Progress bar -->
+            <div class="progress-track mb-2">
+              <div id="progress-fill" class="h-full rounded-full transition-all duration-700" style="width:67%; background:linear-gradient(90deg,#F59E0B,#22C55E);"></div>
+            </div>
+            <div id="goal-text" class="text-xs text-gray-500 mb-3">2 / 3 đề hoàn thành</div>
+            <!-- CTA -->
+            <button id="cta-btn" class="btn-cta">▶ Làm bài tiếp theo</button>
+          </div>
+        </div>
+
+        <!-- Middle col -->
+        <div class="space-y-4">
+          <!-- Class assignments -->
+          <div class="card p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="font-semibold text-gray-700 text-sm">📚 Bài tập từ lớp</div>
+              <a href="#" class="text-xs text-orange-500">Xem lớp →</a>
+            </div>
+            <div class="space-y-2">
+              <div class="assignment-card">
+                <div class="text-xs font-semibold text-gray-800">Đề Toán 5 - Phân số</div>
+                <div class="flex items-center justify-between mt-1">
+                  <span class="text-xs text-gray-500">Cô Thảo giao · Hôm nay</span>
+                  <button class="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-lg">Làm bài</button>
+                </div>
+              </div>
+              <div class="assignment-card opacity-60">
+                <div class="text-xs font-semibold text-gray-800">Đề Toán 5 - Hình học</div>
+                <div class="flex items-center justify-between mt-1">
+                  <span class="text-xs text-gray-500">Cô Thảo giao · Hết hạn T6</span>
+                  <button class="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-lg">Làm bài</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggested exam -->
+          <div class="card p-4">
+            <div class="font-semibold text-gray-700 text-sm mb-3">💡 Gợi ý đề phù hợp</div>
+            <div class="bg-orange-50 rounded-lg p-3">
+              <div class="text-xs font-semibold text-gray-700">Toán 5 · Phép chia phân số</div>
+              <div class="text-xs text-gray-500 mt-0.5">Bộ GD · 20 câu · 30 phút</div>
+              <button class="mt-2 text-xs font-semibold text-orange-600">▶ Bắt đầu ngay</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right col -->
+        <div class="space-y-4">
+          <!-- Weekly stats -->
+          <div class="card p-4">
+            <div class="font-semibold text-gray-700 text-sm mb-3">📊 Tuần này</div>
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div class="stat-card rounded-lg p-2">
+                <div class="text-xl font-bold text-gray-800">12</div>
+                <div class="text-xs text-gray-400">đề</div>
+              </div>
+              <div class="stat-card rounded-lg p-2">
+                <div class="text-xl font-bold text-gray-800">85%</div>
+                <div class="text-xs text-gray-400">đúng</div>
+              </div>
+              <div class="rank-badge rounded-lg p-2">
+                <div class="text-xl font-bold text-amber-700">#2</div>
+                <div class="text-xs text-amber-600">lớp</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weaknesses -->
+          <div class="card p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="font-semibold text-gray-700 text-sm">🎯 Cần luyện thêm</div>
+            </div>
+            <div class="space-y-2">
+              <div class="weakness-item">
+                <div>
+                  <div class="text-xs font-medium text-gray-700">Phân số</div>
+                  <div class="text-xs text-red-400">60% đúng</div>
+                </div>
+                <button class="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded-lg">Luyện ngay</button>
+              </div>
+              <div class="weakness-item">
+                <div>
+                  <div class="text-xs font-medium text-gray-700">Hình học</div>
+                  <div class="text-xs text-orange-400">55% đúng</div>
+                </div>
+                <button class="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded-lg">Luyện ngay</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showState(state) {
+  document.getElementById('state-empty').classList.add('hidden');
+  document.getElementById('state-active').classList.add('hidden');
+  document.getElementById('state-broken').classList.add('hidden');
+  document.getElementById('confetti-banner').classList.add('hidden');
+
+  if (state === 'empty') {
+    document.getElementById('state-empty').classList.remove('hidden');
+  } else if (state === 'streak') {
+    document.getElementById('state-active').classList.remove('hidden');
+    document.getElementById('streak-num').textContent = '7';
+    document.getElementById('progress-fill').style.width = '67%';
+    document.getElementById('goal-text').textContent = '2 / 3 đề hoàn thành';
+    document.getElementById('cta-btn').textContent = '▶ Làm bài tiếp theo';
+    document.getElementById('cta-btn').style.background = '#F97316';
+  } else if (state === 'done') {
+    document.getElementById('state-active').classList.remove('hidden');
+    document.getElementById('confetti-banner').classList.remove('hidden');
+    document.getElementById('streak-num').textContent = '7';
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('progress-fill').style.background = 'linear-gradient(90deg,#7C3AED,#A78BFA)';
+    document.getElementById('goal-text').textContent = '3 / 3 đề — Hoàn thành! 🎉';
+    document.getElementById('cta-btn').textContent = 'Làm thêm bài';
+    document.getElementById('cta-btn').style.background = '#059669';
+  } else if (state === 'broken') {
+    document.getElementById('state-broken').classList.remove('hidden');
+    document.getElementById('state-active').classList.remove('hidden');
+    document.getElementById('streak-num').textContent = '0';
+    document.getElementById('progress-fill').style.width = '0%';
+    document.getElementById('goal-text').textContent = '0 / 3 đề';
+    document.getElementById('cta-btn').textContent = '▶ Bắt đầu lại hôm nay';
+    document.getElementById('cta-btn').style.background = '#F97316';
+  }
+}
+showState('streak');
+</script>
+</body>
+</html>
